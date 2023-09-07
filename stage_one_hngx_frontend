@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Dashboard</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .user-info {
+            text-align: center;
+            margin: 20px;
+        }
+        img {
+            max-width: 150px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-info">
+        <h1 data-testid="slackUserName">Your Slack Name</h1>
+        <img src="profile-image.jpg" alt="Your Username" data-testid="slackDisplayImage">
+        <p data-testid="currentDayOfTheWeek">Day of the Week: <span id="currentDay"></span></p>
+        <p data-testid="currentUTCTime">UTC Time: <span id="currentUTC"></span></p>
+        <p data-testid="my track">Track: Frontend</p>
+        <p data-testid="githubURL"><a href="https://github.com/yourusername">GitHub Profile</a></p>
+    </div>
+
+    <script>
+        // JavaScript to display current day and UTC time
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const currentDayElement = document.getElementById("currentDay");
+        const currentUTCTimeElement = document.getElementById("currentUTC");
+
+        const currentDate = new Date();
+        const currentDay = daysOfWeek[currentDate.getUTCDay()];
+        const currentUTCTime = currentDate.toISOString().slice(11, 19);
+
+        currentDayElement.textContent = currentDay;
+        currentUTCTimeElement.textContent = currentUTCTime;
+    </script>
+</body>
+</html>
