@@ -76,7 +76,7 @@
     </div>
     
 <script>
-    // JavaScript to display current day, UTC time in the format 24:60:60:00, and update it automatically
+    // JavaScript to display current day and UTC time in standard milliseconds format and update it automatically
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const currentDayElement = document.getElementById("currentDay");
     const currentUTCTimeElement = document.getElementById("currentUTC");
@@ -84,13 +84,11 @@
     function updateCurrentTime() {
         const currentDate = new Date();
         const currentDay = daysOfWeek[currentDate.getUTCDay()];
-        const hours = currentDate.getUTCHours().toString().padStart(2, '0');
-        const minutes = currentDate.getUTCMinutes().toString().padStart(2, '0');
-        const seconds = currentDate.getUTCSeconds().toString().padStart(2, '0');
         const milliseconds = currentDate.getUTCMilliseconds().toString().padStart(3, '0');
+        const totalMilliseconds = (currentDate.getUTCHours() * 3600000) + (currentDate.getUTCMinutes() * 60000) + (currentDate.getUTCSeconds() * 1000) + parseInt(milliseconds);
 
         currentDayElement.textContent = currentDay;
-        currentUTCTimeElement.textContent = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+        currentUTCTimeElement.textContent = totalMilliseconds.toString();
     }
 
     // Call the update function initially
