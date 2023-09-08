@@ -16,7 +16,7 @@
         /* Container for user info */
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto; /* Added margin to center the container */
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -63,7 +63,7 @@
             text-decoration: underline;
         }
 
-        /* Remove inline display for currentDay and currentUTC */
+        /* Add highlights to currentDay and currentUTC */
         #currentDay,
         #currentUTC {
             background-color: #007BFF;
@@ -73,6 +73,9 @@
             margin: 20px 10px; /* Increased spacing */
         }
 
+        /* Center currentDay and currentUTC horizontally */
+        .center {
+            text-align: center;
         }
     </style>
 </head>
@@ -83,8 +86,10 @@
             <h1 data-testid="slackUserName">Ashiru Nura</h1>
             <p data-testid="my track"><b>Track: </b><span class="highlight">Frontend</span></p>
             <p data-testid="githubURL"><b>GitHub Profile: </b><a href="https://github.com/Aashnoor/Aashnoor.github.io/blob/main/index.html" class="highlight">Visit GitHub</a></p>
-            <p data-testid="currentDay">Day: Sunday</p>
-            <p data-testid="currentUTC">UTC Time: 12:34:56</p>
+            <div class="center"> <!-- Centered div -->
+                <span id="currentDay" class="highlight">Day: Sunday</span>
+                <span id="currentUTC" class="highlight">UTC Time: 12:34:56</span>
+            </div>
         </div>
     </div>
 
