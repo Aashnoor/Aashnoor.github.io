@@ -66,40 +66,63 @@
 <body>
     <div class="container">
         <div class="user-info">
-            <img src="profile-pic.jpg" alt="profile picture" data-testid="slackDisplayImage">
-            <h1 data-testid="slackUserName">ASHIRU NURA</h1>
+            <img id="slackProfileImage" src="" alt="profile picture" data-testid="slackDisplayImage">
+            <h1 id="slackDisplayName" data-testid="slackUserName"></h1>
             <p data-testid="my track"><b>Track: </b><span class="highlight">Frontend</span></p>
-            <p data-testid="currentDayOfTheWeek"><b>Day of the week: </b><span id="currentDay" class = "highlight"></span></p>
-            <p data-testid="currentUTCTime"><b>UTC Time: </b><span id="currentUTC" class = "highlight"></span></p>
+            <p data-testid="currentDayOfTheWeek"><b>Day of the week: </b><span id="currentDay" class="highlight"></span></p>
+            <p data-testid="currentUTCTime"><b>UTC Time: </b><span id="currentUTC" class="highlight"></span></p>
             <p data-testid="githubURL"><b>GitHub Profile: </b><a href="https://github.com/Aashnoor/Aashnoor.github.io/blob/main/index.html" class="highlight">Visit GitHub</a></p>
         </div>
     </div>
-   
-<script>
-    // JavaScript to display current day and UTC time in hours:minutes:seconds:milliseconds format and update it automatically
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const currentDayElement = document.getElementById("currentDay");
-    const currentUTCTimeElement = document.getElementById("currentUTC");
 
-    function updateCurrentTime() {
-        const currentDate = new Date();
-        const currentDay = daysOfWeek[currentDate.getUTCDay()];
-        const hours = currentDate.getUTCHours().toString().padStart(2, '0');
-        const minutes = currentDate.getUTCMinutes().toString().padStart(2, '0');
-        const seconds = currentDate.getUTCSeconds().toString().padStart(2, '0');
-        const milliseconds = currentDate.getUTCMilliseconds().toString().padStart(3, '0');
+    <script>
+        // JavaScript to fetch Slack profile information
+        const slackProfileImageElement = document.getElementById("slackProfileImage");
+        const slackDisplayNameElement = document.getElementById("slackDisplayName");
 
-        const currentTimeString = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+        // Replace 'YOUR_ACCESS_TOKEN' with your actual Slack access token
+        const accessToken = '941030';
+        const slackApiUrl = 'https://slack.com/api/users.profile.get';
 
-        currentDayElement.textContent = currentDay;
-        currentUTCTimeElement.textContent = currentTimeString;
-    }
+        // Make a request to Slack API
+        fetch(slackApiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const profile = data.profile;
+            slackProfileImageElement.src = profile.image_original;
+            slackDisplayNameElement.textContent = profile.display_name;
+        })
+        .catch(error => console.error('Error fetching Slack profile:', error));
 
-    // Call the update function initially
-    updateCurrentTime();
+        // JavaScript to display current day and UTC time in hours:minutes:seconds:milliseconds format and update it automatically
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const currentDayElement = document.getElementById("currentDay");
+        const currentUTCTimeElement = document.getElementById("currentUTC");
 
-    // Update the time every 100 milliseconds
-    setInterval(updateCurrentTime, 100);
-</script>
+        function updateCurrentTime() {
+            const currentDate = new Date();
+            const currentDay = daysOfWeek[currentDate.getUTCDay()];
+            const hours = currentDate.getUTCHours().toString().padStart(2, '0');
+            const minutes = currentDate.getUTCMinutes().toString().padStart(2, '0');
+            const seconds = currentDate.getUTCSeconds().toString().padStart(2, '0');
+            const milliseconds = currentDate.getUTCMilliseconds().toString().padStart(3, '0');
+
+            const currentTimeString = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+
+            currentDayElement.textContent = currentDay;
+            currentUTCTimeElement.textContent = currentTimeString;
+        }
+
+        // Call the update function initially
+        updateCurrentTime();
+
+        // Update the time every 100 milliseconds
+        setInterval(updateCurrentTime, 100);
+    </script>
 </body>
 </html>
