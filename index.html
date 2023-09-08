@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HNGx Stage 1 Exercise</title>
+    <title>My Personal Dashboard</title>
     <style>
         /* Reset some default styles */
         body {
@@ -44,26 +44,21 @@
         .user-info p {
             font-size: 16px;
             color: #777;
-            margin: 10px 0;
+            margin: 15px 0; /* Increased spacing between lines */
         }
 
-        /* Style the link */
-        .user-info a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        .user-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Highlighted elements */
+        /* Style the link and highlighted elements */
         .highlight {
             background-color: #007BFF;
             color: #fff;
             padding: 5px 10px;
             border-radius: 5px;
             font-weight: bold;
+            text-decoration: none;
+        }
+
+        .highlight:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -75,7 +70,7 @@
             <p data-testid="currentDayOfTheWeek"><b>Day of the week: </b><span id="currentDay"></span></p>
             <p data-testid="currentUTCTime"><b>UTC Time: </b><span id="currentUTC"></span></p>
             <p data-testid="my track"><b>Track: </b><span class="highlight">Frontend</span></p>
-            <p data-testid="githubURL"><b>GitHub Profile: </b><span class ="highlight"><a href="https://github.com/Aashnoor/Aashnoor.github.io/blob/main/index.html">Visit GitHub</a></span></p>
+            <p data-testid="githubURL"><b>GitHub Profile: </b><a href="https://github.com/Aashnoor/Aashnoor.github.io/blob/main/index.html" class="highlight">Visit GitHub</a></p>
         </div>
     </div>
 
@@ -94,4 +89,3 @@
     </script>
 </body>
 </html>
-
