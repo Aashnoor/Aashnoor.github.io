@@ -74,19 +74,28 @@
             <p data-testid="githubURL"><b>GitHub Profile: </b><a href="https://github.com/Aashnoor/Aashnoor.github.io/blob/main/index.html" class="highlight">Visit GitHub</a></p>
         </div>
     </div>
-
+    
     <script>
-    // JavaScript to display current day, UTC time, and milliseconds
+    // JavaScript to display current day, UTC time in milliseconds, and update it automatically
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const currentDayElement = document.getElementById("currentDay");
     const currentUTCTimeElement = document.getElementById("currentUTC");
 
-    const currentDate = new Date();
-    const currentDay = daysOfWeek[currentDate.getUTCDay()];
-    const currentUTCTime = currentDate.toISOString().slice(11, 23); // Include milliseconds
+    function updateCurrentTime() {
+        const currentDate = new Date();
+        const currentDay = daysOfWeek[currentDate.getUTCDay()];
+        const currentUTCTime = currentDate.toISOString().slice(11, 23); // Include milliseconds
+        const currentTimeInMilliseconds = currentDate.getUTCHours() * 3600000 + currentDate.getUTCMinutes() * 60000 + currentDate.getUTCSeconds() * 1000 + currentDate.getUTCMilliseconds();
 
-    currentDayElement.textContent = currentDay;
-    currentUTCTimeElement.textContent = currentUTCTime;
+        currentDayElement.textContent = currentDay;
+        currentUTCTimeElement.textContent = `${currentUTCTime}:${currentTimeInMilliseconds.toString().padStart(3, '0')}`;
+    }
+
+    // Call the update function initially
+    updateCurrentTime();
+
+    // Update the time every second
+    setInterval(updateCurrentTime, 1000);
     </script>
 </body>
 </html>
