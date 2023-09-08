@@ -76,12 +76,15 @@
     </div>
     <script>
         // JavaScript to fetch Slack profile information
-        const accessToken = 'xoxe-1-My0xLTU1MjUzNTAzMDc2MzUtNTg3MzM1MjI5MTE3Mi01ODY0MjY3NDA0NTE4LWRhOTUwYjYyNmY4ZmZiZTYwZmUwYjI3YjNiNGI1NzEwNzI5NmE2OWRkODk5YmE3YzlkNWQ0NTJmODUwN2ZjNDE'; // Replace with your actual access token
+        const accessToken = 'xoxe-1-My0xLTU1MjUzNTAzMDc2MzUtNTg3MzM1MjI5MTE3Mi01ODY0MjY3NDA0NTE4LWRhOTUwYjYyNmY4ZmZiZTYwZmUwYjI3YjNiNGI1NzEwNzI9NmE2OWRkODk5YmE3YzlkNWQ0NTJmODUwN2ZjNDE'; // Replace with your actual OAuth token
         const slackProfileImageElement = document.getElementById("slackProfileImage");
         const slackDisplayNameElement = document.getElementById("slackDisplayName");
 
-        fetch(`https://slack.com/api/users.profile.get?token=${accessToken}`, {
+        fetch('https://slack.com/api/users.profile.get', {
             method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
         })
         .then(response => response.json())
         .then(data => {
