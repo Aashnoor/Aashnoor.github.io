@@ -5,7 +5,7 @@ const currentUTCTimeElement = document.getElementById("currentUTC");
 function updateCurrentTime() {
     const currentDate = new Date();
     const currentDay = daysOfWeek[currentDate.getUTCDay()];
-    const totalMilliseconds = currentDate.getUTCHours() * 3600000 + currentDate.getUTCMinutes() * 60000 + currentDate.getUTCSeconds() * 1000 + currentDate.getUTCMilliseconds();
+    const totalMilliseconds = currentDate.getTime(); // Get the milliseconds since Jan 1, 1970 (Unix timestamp)
 
     currentDayElement.textContent = currentDay.toString();
     currentUTCTimeElement.textContent = totalMilliseconds.toString();
