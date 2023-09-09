@@ -7,8 +7,8 @@ function updateCurrentTime() {
     const currentDay = daysOfWeek[currentDate.getUTCDay()];
     const totalMilliseconds = currentDate.getUTCHours() * 3600000 + currentDate.getUTCMinutes() * 60000 + currentDate.getUTCSeconds() * 1000 + currentDate.getUTCMilliseconds();
 
-    currentDayElement.textContent = `Current Day: ${currentDay}`;
-    currentUTCTimeElement.textContent = `Current UTC Time (Milliseconds): ${totalMilliseconds}`;
+    currentDayElement.textContent = ${currentDay};
+    currentUTCTimeElement.textContent = ${totalMilliseconds};
 }
 
 // Call the update function initially
